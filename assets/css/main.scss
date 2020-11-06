@@ -1,0 +1,30 @@
+---
+# Add a comment to make this file sass-y.
+# Change this file for any custom CSS.
+---
+
+/*Icons*/
+i { 
+	font-family: FontAwesome;
+	font-style: normal;
+	color: #000000;
+	font-size: 5px;
+	padding-right: 2px;
+	padding-left: 2px;
+
+ }
+
+i:hover{
+	color: #91C9BE 
+}
+
+/* We need to add display:inline in order to align the '>>' of the 'read more' link */
+.post-excerpt p {
+	display:inline;
+}
+
+// Import partials from `sass_dir` (defaults to `_sass`)
+@import
+	"syntax",
+    "starsnonscss"
+;
