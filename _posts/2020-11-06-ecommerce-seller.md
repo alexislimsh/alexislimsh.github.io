@@ -12,7 +12,7 @@ hidden: true
 
 Exploratory data analysis and seller performance prediction leveraging a sample of e-commerce data from Brazilian company Olist. 
 
-[Github Link](https://github.com/alexislimsh/dsiprojects/tree/master/capstone)
+Read the code on Github [here](https://github.com/alexislimsh/dsiprojects/tree/master/capstone)
 
 # E-Commerce Seller Performance Prediction
 

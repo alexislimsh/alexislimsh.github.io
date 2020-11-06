@@ -11,7 +11,7 @@ hidden: true
 
 Natural language processing project delving into the subreddit r/LifeProTips and r/UnethicalLifeProTips.
 
-[Github Link](https://github.com/alexislimsh/dsiprojects/tree/master/dsi-16-project-3)
+Read the code on Github [here](https://github.com/alexislimsh/dsiprojects/tree/master/dsi-16-project-3)
 
 # NLP and API with Reddit
 
