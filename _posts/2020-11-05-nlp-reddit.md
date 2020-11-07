@@ -6,7 +6,7 @@ categories: [ ga-dsi ]
 tags: [nlp, classification]
 image: assets/images/lifeprotips/lpt-hero.jpg
 featured: true
-hidden: true
+hidden: false
 ---
 
 Natural language processing project delving into the subreddit r/LifeProTips and r/UnethicalLifeProTips.

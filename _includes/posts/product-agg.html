@@ -1,0 +1,559 @@
+
+
+
+
+<html lang="en">
+
+  <head>
+
+      <meta charset="utf-8">
+      <title>product-agg</title>
+
+
+
+
+        <style>
+            .panel-widget-box {
+                	min-height: 20px;
+                	background-color: #f5f5f5;
+                	border: 1px solid #e3e3e3 !important;
+                	border-radius: 4px;
+                	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+                	box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+                	overflow-x: hidden;
+                	overflow-y: hidden;
+                }
+
+                .scrollable {
+                  overflow: scroll;
+                }
+
+                progress {
+                	appearance: none;
+                	-moz-appearance: none;
+                	-webkit-appearance: none;
+
+                	border: none;
+                	height: 20px;
+                	background-color: whiteSmoke;
+                	border-radius: 3px;
+                	box-shadow: 0 2px 3px rgba(0,0,0,.5) inset;
+                	color: royalblue;
+                	position: relative;
+                	margin: 0 0 1.5em;
+                }
+
+                progress[value]::-webkit-progress-bar {
+                	background-color: whiteSmoke;
+                	border-radius: 3px;
+                	box-shadow: 0 2px 3px rgba(0,0,0,.5) inset;
+                }
+
+                progress[value]::-webkit-progress-value {
+                	position: relative;
+
+                	background-size: 35px 20px, 100% 100%, 100% 100%;
+                	border-radius:3px;
+                }
+
+                progress.active:not([value])::before {
+                	background-position: 10%;
+                	animation-name: stripes;
+                	animation-duration: 3s;
+                	animation-timing-function: linear;
+                	animation-iteration-count: infinite;
+                }
+
+                progress[value]::-moz-progress-bar {
+                	background-size: 35px 20px, 100% 100%, 100% 100%;
+                	border-radius:3px;
+                }
+
+                progress:not([value])::-moz-progress-bar {
+                	border-radius:3px;
+                	background:
+                	linear-gradient(-45deg, transparent 33%, rgba(0, 0, 0, 0.2) 33%, rgba(0, 0, 0, 0.2) 66%, transparent 66%) left/2.5em 1.5em;
+
+                }
+
+                progress.active:not([value])::-moz-progress-bar {
+                	background-position: 10%;
+                	animation-name: stripes;
+                	animation-duration: 3s;
+                	animation-timing-function: linear;
+                	animation-iteration-count: infinite;
+                }
+
+                progress.active:not([value])::-webkit-progress-bar {
+                	background-position: 10%;
+                	animation-name: stripes;
+                	animation-duration: 3s;
+                	animation-timing-function: linear;
+                	animation-iteration-count: infinite;
+                }
+
+                progress.primary[value]::-webkit-progress-value { background-color: #007bff; }
+                progress.primary:not([value])::before { background-color: #007bff; }
+                progress.primary:not([value])::-webkit-progress-bar { background-color: #007bff; }
+                progress.primary::-moz-progress-bar { background-color: #007bff; }
+
+                progress.secondary[value]::-webkit-progress-value { background-color: #6c757d; }
+                progress.secondary:not([value])::before { background-color: #6c757d; }
+                progress.secondary:not([value])::-webkit-progress-bar { background-color: #6c757d; }
+                progress.secondary::-moz-progress-bar { background-color: #6c757d; }
+
+                progress.success[value]::-webkit-progress-value { background-color: #28a745; }
+                progress.success:not([value])::before { background-color: #28a745; }
+                progress.success:not([value])::-webkit-progress-bar { background-color: #28a745; }
+                progress.success::-moz-progress-bar { background-color: #28a745; }
+
+                progress.danger[value]::-webkit-progress-value { background-color: #dc3545; }
+                progress.danger:not([value])::before { background-color: #dc3545; }
+                progress.danger:not([value])::-webkit-progress-bar { background-color: #dc3545; }
+                progress.danger::-moz-progress-bar { background-color: #dc3545; }
+
+                progress.warning[value]::-webkit-progress-value { background-color: #ffc107; }
+                progress.warning:not([value])::before { background-color: #ffc107; }
+                progress.warning:not([value])::-webkit-progress-bar { background-color: #ffc107; }
+                progress.warning::-moz-progress-bar { background-color: #ffc107; }
+
+                progress.info[value]::-webkit-progress-value { background-color: #17a2b8; }
+                progress.info:not([value])::before { background-color: #17a2b8; }
+                progress.info:not([value])::-webkit-progress-bar { background-color: #17a2b8; }
+                progress.info::-moz-progress-bar { background-color: #17a2b8; }
+
+                progress.light[value]::-webkit-progress-value { background-color: #f8f9fa; }
+                progress.light:not([value])::before { background-color: #f8f9fa; }
+                progress.light:not([value])::-webkit-progress-bar { background-color: #f8f9fa; }
+                progress.light::-moz-progress-bar { background-color: #f8f9fa; }
+
+                progress.dark[value]::-webkit-progress-value { background-color: #343a40; }
+                progress.dark:not([value])::-webkit-progress-bar { background-color: #343a40; }
+                progress.dark:not([value])::before { background-color: #343a40; }
+                progress.dark::-moz-progress-bar { background-color: #343a40; }
+
+                progress:not([value])::-webkit-progress-bar {
+                	border-radius: 3px;
+                	background:
+                	linear-gradient(-45deg, transparent 33%, rgba(0, 0, 0, 0.2) 33%, rgba(0, 0, 0, 0.2) 66%, transparent 66%) left/2.5em 1.5em;
+                }
+                progress:not([value])::before {
+                	content:" ";
+                	position:absolute;
+                	height: 20px;
+                	top:0;
+                	left:0;
+                	right:0;
+                	bottom:0;
+                	border-radius: 3px;
+                	background:
+                	linear-gradient(-45deg, transparent 33%, rgba(0, 0, 0, 0.2) 33%, rgba(0, 0, 0, 0.2) 66%, transparent 66%) left/2.5em 1.5em;
+                }
+
+                @keyframes stripes {
+                  from {background-position: 0%}
+                  to {background-position: 100%}
+                }
+
+        </style>
+        <style>
+            .codehilite .hll { background-color: #ffffcc }
+                .codehilite  { background: #f8f8f8; }
+                .codehilite .c { color: #408080; font-style: italic } /* Comment */
+                .codehilite .err { border: 1px solid #FF0000 } /* Error */
+                .codehilite .k { color: #008000; font-weight: bold } /* Keyword */
+                .codehilite .o { color: #666666 } /* Operator */
+                .codehilite .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+                .codehilite .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+                .codehilite .cp { color: #BC7A00 } /* Comment.Preproc */
+                .codehilite .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+                .codehilite .c1 { color: #408080; font-style: italic } /* Comment.Single */
+                .codehilite .cs { color: #408080; font-style: italic } /* Comment.Special */
+                .codehilite .gd { color: #A00000 } /* Generic.Deleted */
+                .codehilite .ge { font-style: italic } /* Generic.Emph */
+                .codehilite .gr { color: #FF0000 } /* Generic.Error */
+                .codehilite .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+                .codehilite .gi { color: #00A000 } /* Generic.Inserted */
+                .codehilite .go { color: #888888 } /* Generic.Output */
+                .codehilite .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+                .codehilite .gs { font-weight: bold } /* Generic.Strong */
+                .codehilite .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+                .codehilite .gt { color: #0044DD } /* Generic.Traceback */
+                .codehilite .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+                .codehilite .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+                .codehilite .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+                .codehilite .kp { color: #008000 } /* Keyword.Pseudo */
+                .codehilite .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+                .codehilite .kt { color: #B00040 } /* Keyword.Type */
+                .codehilite .m { color: #666666 } /* Literal.Number */
+                .codehilite .s { color: #BA2121 } /* Literal.String */
+                .codehilite .na { color: #7D9029 } /* Name.Attribute */
+                .codehilite .nb { color: #008000 } /* Name.Builtin */
+                .codehilite .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+                .codehilite .no { color: #880000 } /* Name.Constant */
+                .codehilite .nd { color: #AA22FF } /* Name.Decorator */
+                .codehilite .ni { color: #999999; font-weight: bold } /* Name.Entity */
+                .codehilite .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+                .codehilite .nf { color: #0000FF } /* Name.Function */
+                .codehilite .nl { color: #A0A000 } /* Name.Label */
+                .codehilite .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+                .codehilite .nt { color: #008000; font-weight: bold } /* Name.Tag */
+                .codehilite .nv { color: #19177C } /* Name.Variable */
+                .codehilite .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+                .codehilite .w { color: #bbbbbb } /* Text.Whitespace */
+                .codehilite .mb { color: #666666 } /* Literal.Number.Bin */
+                .codehilite .mf { color: #666666 } /* Literal.Number.Float */
+                .codehilite .mh { color: #666666 } /* Literal.Number.Hex */
+                .codehilite .mi { color: #666666 } /* Literal.Number.Integer */
+                .codehilite .mo { color: #666666 } /* Literal.Number.Oct */
+                .codehilite .sa { color: #BA2121 } /* Literal.String.Affix */
+                .codehilite .sb { color: #BA2121 } /* Literal.String.Backtick */
+                .codehilite .sc { color: #BA2121 } /* Literal.String.Char */
+                .codehilite .dl { color: #BA2121 } /* Literal.String.Delimiter */
+                .codehilite .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+                .codehilite .s2 { color: #BA2121 } /* Literal.String.Double */
+                .codehilite .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+                .codehilite .sh { color: #BA2121 } /* Literal.String.Heredoc */
+                .codehilite .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+                .codehilite .sx { color: #008000 } /* Literal.String.Other */
+                .codehilite .sr { color: #BB6688 } /* Literal.String.Regex */
+                .codehilite .s1 { color: #BA2121 } /* Literal.String.Single */
+                .codehilite .ss { color: #19177C } /* Literal.String.Symbol */
+                .codehilite .bp { color: #008000 } /* Name.Builtin.Pseudo */
+                .codehilite .fm { color: #0000FF } /* Name.Function.Magic */
+                .codehilite .vc { color: #19177C } /* Name.Variable.Class */
+                .codehilite .vg { color: #19177C } /* Name.Variable.Global */
+                .codehilite .vi { color: #19177C } /* Name.Variable.Instance */
+                .codehilite .vm { color: #19177C } /* Name.Variable.Magic */
+                .codehilite .il { color: #666666 } /* Literal.Number.Integer.Long */
+
+                .markdown h1 { margin-block-start: 0.34em }
+                .markdown h2 { margin-block-start: 0.42em }
+                .markdown h3 { margin-block-start: 0.5em }
+                .markdown h4 { margin-block-start: 0.67em }
+                .markdown h5 { margin-block-start: 0.84em }
+                .markdown h6 { margin-block-start: 1.17em }
+                .markdown ul { padding-inline-start: 2em }
+                .markdown ol { padding-inline-start: 2em }
+                .markdown strong { font-weight: 600 }
+                .markdown a { color: -webkit-link }
+                .markdown a { color: -moz-hyperlinkText }
+
+        </style>
+        <style>
+            .json-formatter-row {
+                  font-family: monospace;
+                }
+                .json-formatter-row,
+                .json-formatter-row a,
+                .json-formatter-row a:hover {
+                  color: black;
+                  text-decoration: none;
+                }
+                .json-formatter-row .json-formatter-row {
+                  margin-left: 1rem;
+                }
+                .json-formatter-row .json-formatter-children.json-formatter-empty {
+                  opacity: 0.5;
+                  margin-left: 1rem;
+                }
+                .json-formatter-row .json-formatter-children.json-formatter-empty:after {
+                  display: none;
+                }
+                .json-formatter-row .json-formatter-children.json-formatter-empty.json-formatter-object:after {
+                  content: "No properties";
+                }
+                .json-formatter-row .json-formatter-children.json-formatter-empty.json-formatter-array:after {
+                  content: "[]";
+                }
+                .json-formatter-row .json-formatter-string,
+                .json-formatter-row .json-formatter-stringifiable {
+                  color: green;
+                  white-space: pre;
+                  word-wrap: break-word;
+                }
+                .json-formatter-row .json-formatter-number {
+                  color: blue;
+                }
+                .json-formatter-row .json-formatter-boolean {
+                  color: red;
+                }
+                .json-formatter-row .json-formatter-null {
+                  color: #855A00;
+                }
+                .json-formatter-row .json-formatter-undefined {
+                  color: #ca0b69;
+                }
+                .json-formatter-row .json-formatter-function {
+                  color: #FF20ED;
+                }
+                .json-formatter-row .json-formatter-date {
+                  background-color: rgba(0, 0, 0, 0.05);
+                }
+                .json-formatter-row .json-formatter-url {
+                  text-decoration: underline;
+                  color: blue;
+                  cursor: pointer;
+                }
+                .json-formatter-row .json-formatter-bracket {
+                  color: blue;
+                }
+                .json-formatter-row .json-formatter-key {
+                  color: #00008B;
+                  padding-right: 0.2rem;
+                }
+                .json-formatter-row .json-formatter-toggler-link {
+                  cursor: pointer;
+                }
+                .json-formatter-row .json-formatter-toggler {
+                  line-height: 1.2rem;
+                  font-size: 0.7rem;
+                  vertical-align: middle;
+                  opacity: 0.6;
+                  cursor: pointer;
+                  padding-right: 0.2rem;
+                }
+                .json-formatter-row .json-formatter-toggler:after {
+                  display: inline-block;
+                  transition: transform 100ms ease-in;
+                  content: "\25BA";
+                }
+                .json-formatter-row > a > .json-formatter-preview-text {
+                  opacity: 0;
+                  transition: opacity 0.15s ease-in;
+                  font-style: italic;
+                }
+                .json-formatter-row:hover > a > .json-formatter-preview-text {
+                  opacity: 0.6;
+                }
+                .json-formatter-row.json-formatter-open > .json-formatter-toggler-link .json-formatter-toggler:after {
+                  transform: rotate(90deg);
+                }
+                .json-formatter-row.json-formatter-open > .json-formatter-children:after {
+                  display: inline-block;
+                }
+                .json-formatter-row.json-formatter-open > a > .json-formatter-preview-text {
+                  display: none;
+                }
+                .json-formatter-row.json-formatter-open.json-formatter-empty:after {
+                  display: block;
+                }
+                .json-formatter-dark.json-formatter-row {
+                  font-family: monospace;
+                }
+                .json-formatter-dark.json-formatter-row,
+                .json-formatter-dark.json-formatter-row a,
+                .json-formatter-dark.json-formatter-row a:hover {
+                  color: white;
+                  text-decoration: none;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-row {
+                  margin-left: 1rem;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-children.json-formatter-empty {
+                  opacity: 0.5;
+                  margin-left: 1rem;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-children.json-formatter-empty:after {
+                  display: none;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-children.json-formatter-empty.json-formatter-object:after {
+                  content: "No properties";
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-children.json-formatter-empty.json-formatter-array:after {
+                  content: "[]";
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-string,
+                .json-formatter-dark.json-formatter-row .json-formatter-stringifiable {
+                  color: #31F031;
+                  white-space: pre;
+                  word-wrap: break-word;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-number {
+                  color: #66C2FF;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-boolean {
+                  color: #EC4242;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-null {
+                  color: #EEC97D;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-undefined {
+                  color: #ef8fbe;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-function {
+                  color: #FD48CB;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-date {
+                  background-color: rgba(255, 255, 255, 0.05);
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-url {
+                  text-decoration: underline;
+                  color: #027BFF;
+                  cursor: pointer;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-bracket {
+                  color: #9494FF;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-key {
+                  color: #23A0DB;
+                  padding-right: 0.2rem;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-toggler-link {
+                  cursor: pointer;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-toggler {
+                  line-height: 1.2rem;
+                  font-size: 0.7rem;
+                  vertical-align: middle;
+                  opacity: 0.6;
+                  cursor: pointer;
+                  padding-right: 0.2rem;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-toggler:after {
+                  display: inline-block;
+                  transition: transform 100ms ease-in;
+                  content: "\25BA";
+                }
+                .json-formatter-dark.json-formatter-row > a > .json-formatter-preview-text {
+                  opacity: 0;
+                  transition: opacity 0.15s ease-in;
+                  font-style: italic;
+                }
+                .json-formatter-dark.json-formatter-row:hover > a > .json-formatter-preview-text {
+                  opacity: 0.6;
+                }
+                .json-formatter-dark.json-formatter-row.json-formatter-open > .json-formatter-toggler-link .json-formatter-toggler:after {
+                  transform: rotate(90deg);
+                }
+                .json-formatter-dark.json-formatter-row.json-formatter-open > .json-formatter-children:after {
+                  display: inline-block;
+                }
+                .json-formatter-dark.json-formatter-row.json-formatter-open > a > .json-formatter-preview-text {
+                  display: none;
+                }
+                .json-formatter-dark.json-formatter-row.json-formatter-open.json-formatter-empty:after {
+                  display: block;
+                }
+
+        </style>
+        <style>
+            table.panel-df {
+                    margin-left: auto;
+                    margin-right: auto;
+                    border: none;
+                    border-collapse: collapse;
+                    border-spacing: 0;
+                    color: black;
+                    font-size: 12px;
+                    table-layout: fixed;
+                    width: 100%;
+                }
+
+                .panel-df tr, .panel-df th, .panel-df td {
+                    text-align: right;
+                    vertical-align: middle;
+                    padding: 0.5em 0.5em !important;
+                    line-height: normal;
+                    white-space: normal;
+                    max-width: none;
+                    border: none;
+                }
+
+                .panel-df tbody {
+                    display: table-row-group;
+                    vertical-align: middle;
+                    border-color: inherit;
+                }
+
+                .panel-df tbody tr:nth-child(odd) {
+                    background: #f5f5f5;
+                }
+
+                .panel-df thead {
+                    border-bottom: 1px solid black;
+                    vertical-align: bottom;
+                }
+
+                .panel-df tr:hover {
+                    background: lightblue !important;
+                    cursor: pointer;
+                }
+
+        </style>
+
+
+
+        <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-2.2.1.min.js" integrity="sha384-qkRvDQVAIfzsJo40iRBbxt6sttt0hv4lh74DG7OK4MCHv4C5oohXYoHUM5W11uqS" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.2.1.min.js" integrity="sha384-Sb7Mr06a9TNlet/GEBeKaf5xH3eb6AlCzwjtU82wNPyDrnfoiVl26qnvlKjmcAd+" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="https://unpkg.com/@holoviz/panel@^0.9.7/dist/panel.min.js" integrity="sha384-" crossorigin="anonymous"></script>
+        <script type="text/javascript">
+            Bokeh.set_log_level("info");
+        </script>
+
+
+
+
+  </head>
+
+
+  <body>
+
+
+
+
+
+
+              <div class="bk-root" id="b3645ce7-9d75-4f55-ba91-5c2cebeddc42" data-root-id="1220"></div>
+
+
+
+              <div class="bk-root" id="d16e3eea-d251-4536-8ff8-b953e0bb6e55" data-root-id="1306"></div>
+
+
+
+
+
+        <script type="application/json" id="1416">
+          {"5fd789dd-c027-4b61-9256-e324375bea3c":{"roots":{"references":[{"attributes":{},"id":"1230","type":"LinearScale"},{"attributes":{"source":{"id":"1255"}},"id":"1264","type":"CDSView"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto","tools":[{"id":"1224"},{"id":"1241"},{"id":"1242"},{"id":"1243"},{"id":"1244"},{"id":"1245"}]},"id":"1247","type":"Toolbar"},{"attributes":{},"id":"1242","type":"PanTool"},{"attributes":{"callback":null,"renderers":[{"id":"1263"}],"tooltips":[["Category","@product_category_name"],["Total Value of Sales","@price_sum{$0,0.00}"],["Total Number of Sales","@price_count{0,000}"],["Mean Price","@price_mean{$0,0.00}"],["Number of Products","@product_id_nunique{0_000}"]]},"id":"1224","type":"HoverTool"},{"attributes":{},"id":"1243","type":"WheelZoomTool"},{"attributes":{"end":1204.8108384833545,"reset_end":1204.8108384833545,"reset_start":0.0,"tags":[[["product_id_nunique","product_id_nunique",null]]]},"id":"1222","type":"Range1d"},{"attributes":{"bottom_units":"screen","fill_alpha":0.5,"fill_color":"lightgrey","left_units":"screen","level":"overlay","line_alpha":1.0,"line_color":"black","line_dash":[4,4],"line_width":2,"right_units":"screen","top_units":"screen"},"id":"1246","type":"BoxAnnotation"},{"attributes":{},"id":"1282","type":"UnionRenderers"},{"attributes":{"margin":[5,5,5,5],"name":"HSpacer03259","sizing_mode":"stretch_width"},"id":"1221","type":"Spacer"},{"attributes":{"text":"Product Categories by Price Mean  Sort by: Mean Price","text_color":{"value":"black"},"text_font_size":{"value":"8pt"}},"id":"1226","type":"Title"},{"attributes":{},"id":"1241","type":"SaveTool"},{"attributes":{"margin":[5,5,5,5],"name":"HSpacer03260","sizing_mode":"stretch_width"},"id":"1293","type":"Spacer"},{"attributes":{"state":{"Mean Price":{"content":"{\"events\": [{\"attr\": \"end\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1222\"}, \"new\": 1204.8108384833545}, {\"attr\": \"reset_end\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1222\"}, \"new\": 1204.8108384833545}, {\"attr\": \"factors\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1223\"}, \"new\": [\"flowers\", \"electronics\", \"food_drink\", \"party_supplies\", \"cds_dvds\", \"telephony\", \"fashion_clothes_accessories\", \"books\", \"home_decor\", \"fashion_shoes\", \"tablets_printing_image\", \"housewares\", \"market_place\", \"stationery\", \"bed_bath_table\", \"cine_photo\", \"signaling_and_safety\", \"pet_shop\", \"garden_tools\", \"art\", \"sports_leisure\", \"computers_accessories\", \"perfumery\", \"toys\", \"home_comfort\", \"luggage_travel_accessories\", \"health_beauty\", \"baby\", \"consoles_games\", \"auto\", \"audio\", \"security_and_services\", \"industry_commerce_and_business\", \"construction\", \"home_furniture\", \"music\", \"office_furniture\", \"cool_stuff\", \"air_conditioning\", \"home_appliances\", \"watches_gifts\", \"fixed_telephony\", \"musical_instruments\", \"small_appliances\", \"agro_industry_and_commerce\", \"computers\"]}, {\"attr\": \"axis_label\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1234\"}, \"new\": \"Mean Price\"}, {\"attr\": \"text\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1226\"}, \"new\": \"Product Categories by Price Mean  Sort by: Mean Price\"}, {\"attr\": \"tooltips\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1224\"}, \"new\": [[\"Category\", \"@product_category_name\"], [\"Total Value of Sales\", \"@price_sum{$0,0.00}\"], [\"Total Number of Sales\", \"@price_count{0,000}\"], [\"Mean Price\", \"@price_mean{$0,0.00}\"], [\"Number of Products\", \"@product_id_nunique{0_000}\"]]}, {\"attr\": \"factors\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1254\"}, \"new\": [\"computers\", \"agro_industry_and_commerce\", \"small_appliances\", \"musical_instruments\", \"fixed_telephony\", \"watches_gifts\", \"home_appliances\", \"air_conditioning\", \"cool_stuff\", \"office_furniture\", \"music\", \"home_furniture\", \"construction\", \"industry_commerce_and_business\", \"security_and_services\", \"audio\", \"auto\", \"consoles_games\", \"baby\", \"health_beauty\", \"luggage_travel_accessories\", \"home_comfort\", \"toys\", \"perfumery\", \"computers_accessories\", \"sports_leisure\", \"art\", \"garden_tools\", \"pet_shop\", \"signaling_and_safety\", \"cine_photo\", \"bed_bath_table\", \"stationery\", \"market_place\", \"housewares\", \"tablets_printing_image\", \"fashion_shoes\", \"home_decor\", \"books\", \"fashion_clothes_accessories\", \"telephony\", \"cds_dvds\", \"party_supplies\", \"food_drink\", \"electronics\", \"flowers\"]}, {\"cols\": null, \"column_source\": {\"id\": \"1255\"}, \"kind\": \"ColumnDataChanged\", \"new\": {\"color\": [\"computers\", \"agro_industry_and_commerce\", \"small_appliances\", \"musical_instruments\", \"fixed_telephony\", \"watches_gifts\", \"home_appliances\", \"air_conditioning\", \"cool_stuff\", \"office_furniture\", \"music\", \"home_furniture\", \"construction\", \"industry_commerce_and_business\", \"security_and_services\", \"audio\", \"auto\", \"consoles_games\", \"baby\", \"health_beauty\", \"luggage_travel_accessories\", \"home_comfort\", \"toys\", \"perfumery\", \"computers_accessories\", \"sports_leisure\", \"art\", \"garden_tools\", \"pet_shop\", \"signaling_and_safety\", \"cine_photo\", \"bed_bath_table\", \"stationery\", \"market_place\", \"housewares\", \"tablets_printing_image\", \"fashion_shoes\", \"home_decor\", \"books\", \"fashion_clothes_accessories\", \"telephony\", \"cds_dvds\", \"party_supplies\", \"food_drink\", \"electronics\", \"flowers\"], \"price_count\": [11242, 9690, 8643, 8375, 7843, 6940, 5980, 4532, 4342, 4222, 4090, 3787, 3416, 3087, 2757, 2510, 2381, 2357, 1938, 1700, 1169, 1128, 1088, 1045, 930, 874, 751, 668, 467, 364, 310, 295, 269, 263, 262, 232, 212, 203, 199, 195, 83, 76, 73, 38, 33, 2], \"price_mean\": {\"__ndarray__\": \"QysCt1wpkUDA2Z1r/2F1QGCgOBHXqXNAQXWaBzyRcUCeoMsZYptrQEdn5dRqEWlAmnurNMU/Z0AC7O5TEjBnQHgWY9kXjGRASUdoGIs1ZEBYgTDSjtljQJUnOHqCu2JAqrrIuemKYkDARqYwGnhiQHA9CtejtGFA9sRO7MRqYUDYhtDMB2hhQF6KKfRGOmFAoP2pPrOcYEA3PrwxhEFgQN1430XsGGBAEyDwu1/mX0BrbYLdR2BdQDgnW704Gl1A0UXNGnALXUAHqXPKxnxcQKHVlwpa/1tAMIDf+EzDW0Dn5djzvZFbQO2eEJOKBVtAkrFO75bMV0Ciw1tAAFZXQCc67l144FZA8c0cRDPQVkBgw8BUmLZWQFDURf4JrVZAz5hjnqRkVkCMJTMDGelVQC6aIb5G2VNAS16vC8euUkCj2thOfMpRQDlksq9OZlFAKfNbG0UEUUCCTW1yUZ5MQOeFLJzAhkxAUMEZFZzRQEA=\", \"dtype\": \"float64\", \"order\": \"little\", \"shape\": [46]}, \"price_sum\": {\"__ndarray__\": \"WHoULn86M0HE9SjclkwyQfT2KJwaAzBBHfcoXEUOLkEQ9yhcq84rQQtyPQpmZiZBhM3MTPA9I0HWzMxMRv8iQf5wPQob8SFBg+xRuCduHUGCXI/CQ1UdQSt7FK4yChlBNYXrUV5FGEHUo3A9H1cVQelvPQpKrxNBLI/C9XHGEEE9j8L1ntcMQcW3HoWbCQxBnXA9Cpk3C0GO////qRYKQeP////TuQdB+4TrUXzrBkEAwvUocrgFQeG3HoVzMwNBbML1KDL6AkFrcD0KexoBQfP///9LAwFBU7gehSe18UAYrkfh8vDwQN6jcD3eVfBAQYXrUaAY7UBiZmZmBkHsQPZRuB5luOpADgAAANDD6EBYuB6FM2jjQGLhehQeoNtAmpmZmWlf2UD9UbgeZQHXQIrrUbhOAdVAcRSuR4HsyUBYj8L1aGi9QIvC9ShcJbtAmJmZmVmSt0AE16Nwfam0QFuPwvUoWJFAcD0K16O0cUA=\", \"dtype\": \"float64\", \"order\": \"little\", \"shape\": [46]}, \"product_category_name\": [\"computers\", \"agro_industry_and_commerce\", \"small_appliances\", \"musical_instruments\", \"fixed_telephony\", \"watches_gifts\", \"home_appliances\", \"air_conditioning\", \"cool_stuff\", \"office_furniture\", \"music\", \"home_furniture\", \"construction\", \"industry_commerce_and_business\", \"security_and_services\", \"audio\", \"auto\", \"consoles_games\", \"baby\", \"health_beauty\", \"luggage_travel_accessories\", \"home_comfort\", \"toys\", \"perfumery\", \"computers_accessories\", \"sports_leisure\", \"art\", \"garden_tools\", \"pet_shop\", \"signaling_and_safety\", \"cine_photo\", \"bed_bath_table\", \"stationery\", \"market_place\", \"housewares\", \"tablets_printing_image\", \"fashion_shoes\", \"home_decor\", \"books\", \"fashion_clothes_accessories\", \"telephony\", \"cds_dvds\", \"party_supplies\", \"food_drink\", \"electronics\", \"flowers\"], \"product_id_nunique\": [3018, 2848, 2639, 2430, 2321, 1882, 1630, 1396, 1322, 1127, 1037, 916, 915, 864, 842, 783, 748, 711, 513, 459, 364, 348, 315, 309, 303, 284, 264, 257, 171, 124, 116, 114, 103, 93, 90, 74, 73, 68, 58, 48, 30, 28, 27, 14, 9, 2]}}, {\"attr\": \"right\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1258\"}, \"new\": {\"field\": \"price_mean\"}}, {\"attr\": \"right\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1260\"}, \"new\": {\"field\": \"price_mean\"}}, {\"attr\": \"right\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1259\"}, \"new\": {\"field\": \"price_mean\"}}, {\"attr\": \"right\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1261\"}, \"new\": {\"field\": \"price_mean\"}}, {\"attr\": \"right\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1262\"}, \"new\": {\"field\": \"price_mean\"}}], \"references\": []}","header":"{\"msgid\": \"1343\", \"msgtype\": \"PATCH-DOC\"}","metadata":"{}"},"Total Sales Counts":{"content":"{\"events\": [{\"attr\": \"end\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1222\"}, \"new\": 12366.0}, {\"attr\": \"reset_end\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1222\"}, \"new\": 12366.0}, {\"attr\": \"factors\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1223\"}, \"new\": [\"security_and_services\", \"flowers\", \"music\", \"cine_photo\", \"cds_dvds\", \"tablets_printing_image\", \"party_supplies\", \"signaling_and_safety\", \"computers\", \"agro_industry_and_commerce\", \"art\", \"fixed_telephony\", \"fashion_shoes\", \"industry_commerce_and_business\", \"air_conditioning\", \"market_place\", \"audio\", \"home_comfort\", \"musical_instruments\", \"small_appliances\", \"books\", \"home_furniture\", \"home_appliances\", \"luggage_travel_accessories\", \"consoles_games\", \"food_drink\", \"office_furniture\", \"pet_shop\", \"construction\", \"fashion_clothes_accessories\", \"stationery\", \"electronics\", \"baby\", \"perfumery\", \"cool_stuff\", \"toys\", \"auto\", \"garden_tools\", \"telephony\", \"watches_gifts\", \"housewares\", \"computers_accessories\", \"home_decor\", \"sports_leisure\", \"health_beauty\", \"bed_bath_table\"]}, {\"attr\": \"axis_label\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1234\"}, \"new\": \"Total Sales\"}, {\"attr\": \"text\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1226\"}, \"new\": \"Product Categories with Highest Sales  Sort by: Total Sales Counts\"}, {\"attr\": \"tooltips\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1224\"}, \"new\": [[\"Category\", \"@product_category_name\"], [\"Total Number of Sales\", \"@price_count{0,000}\"]]}, {\"attr\": \"factors\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1254\"}, \"new\": [\"bed_bath_table\", \"health_beauty\", \"sports_leisure\", \"home_decor\", \"computers_accessories\", \"housewares\", \"watches_gifts\", \"telephony\", \"garden_tools\", \"auto\", \"toys\", \"cool_stuff\", \"perfumery\", \"baby\", \"electronics\", \"stationery\", \"fashion_clothes_accessories\", \"construction\", \"pet_shop\", \"office_furniture\", \"food_drink\", \"consoles_games\", \"luggage_travel_accessories\", \"home_appliances\", \"home_furniture\", \"books\", \"small_appliances\", \"musical_instruments\", \"home_comfort\", \"audio\", \"market_place\", \"air_conditioning\", \"industry_commerce_and_business\", \"fashion_shoes\", \"fixed_telephony\", \"art\", \"agro_industry_and_commerce\", \"computers\", \"signaling_and_safety\", \"party_supplies\", \"tablets_printing_image\", \"cds_dvds\", \"cine_photo\", \"music\", \"flowers\", \"security_and_services\"]}, {\"cols\": null, \"column_source\": {\"id\": \"1255\"}, \"kind\": \"ColumnDataChanged\", \"new\": {\"color\": [\"bed_bath_table\", \"health_beauty\", \"sports_leisure\", \"home_decor\", \"computers_accessories\", \"housewares\", \"watches_gifts\", \"telephony\", \"garden_tools\", \"auto\", \"toys\", \"cool_stuff\", \"perfumery\", \"baby\", \"electronics\", \"stationery\", \"fashion_clothes_accessories\", \"construction\", \"pet_shop\", \"office_furniture\", \"food_drink\", \"consoles_games\", \"luggage_travel_accessories\", \"home_appliances\", \"home_furniture\", \"books\", \"small_appliances\", \"musical_instruments\", \"home_comfort\", \"audio\", \"market_place\", \"air_conditioning\", \"industry_commerce_and_business\", \"fashion_shoes\", \"fixed_telephony\", \"art\", \"agro_industry_and_commerce\", \"computers\", \"signaling_and_safety\", \"party_supplies\", \"tablets_printing_image\", \"cds_dvds\", \"cine_photo\", \"music\", \"flowers\", \"security_and_services\"], \"price_count\": [11242, 9690, 8643, 8375, 7843, 6940, 5980, 4532, 4342, 4222, 4090, 3787, 3416, 3087, 2757, 2510, 2381, 2357, 1938, 1700, 1169, 1128, 1088, 1045, 930, 874, 751, 668, 467, 364, 310, 295, 269, 263, 262, 232, 212, 203, 199, 195, 83, 76, 73, 38, 33, 2], \"price_mean\": {\"__ndarray__\": \"QysCt1wpkUDA2Z1r/2F1QGCgOBHXqXNAQXWaBzyRcUCeoMsZYptrQEdn5dRqEWlAmnurNMU/Z0AC7O5TEjBnQHgWY9kXjGRASUdoGIs1ZEBYgTDSjtljQJUnOHqCu2JAqrrIuemKYkDARqYwGnhiQHA9CtejtGFA9sRO7MRqYUDYhtDMB2hhQF6KKfRGOmFAoP2pPrOcYEA3PrwxhEFgQN1430XsGGBAEyDwu1/mX0BrbYLdR2BdQDgnW704Gl1A0UXNGnALXUAHqXPKxnxcQKHVlwpa/1tAMIDf+EzDW0Dn5djzvZFbQO2eEJOKBVtAkrFO75bMV0Ciw1tAAFZXQCc67l144FZA8c0cRDPQVkBgw8BUmLZWQFDURf4JrVZAz5hjnqRkVkCMJTMDGelVQC6aIb5G2VNAS16vC8euUkCj2thOfMpRQDlksq9OZlFAKfNbG0UEUUCCTW1yUZ5MQOeFLJzAhkxAUMEZFZzRQEA=\", \"dtype\": \"float64\", \"order\": \"little\", \"shape\": [46]}, \"price_sum\": {\"__ndarray__\": \"WHoULn86M0HE9SjclkwyQfT2KJwaAzBBHfcoXEUOLkEQ9yhcq84rQQtyPQpmZiZBhM3MTPA9I0HWzMxMRv8iQf5wPQob8SFBg+xRuCduHUGCXI/CQ1UdQSt7FK4yChlBNYXrUV5FGEHUo3A9H1cVQelvPQpKrxNBLI/C9XHGEEE9j8L1ntcMQcW3HoWbCQxBnXA9Cpk3C0GO////qRYKQeP////TuQdB+4TrUXzrBkEAwvUocrgFQeG3HoVzMwNBbML1KDL6AkFrcD0KexoBQfP///9LAwFBU7gehSe18UAYrkfh8vDwQN6jcD3eVfBAQYXrUaAY7UBiZmZmBkHsQPZRuB5luOpADgAAANDD6EBYuB6FM2jjQGLhehQeoNtAmpmZmWlf2UD9UbgeZQHXQIrrUbhOAdVAcRSuR4HsyUBYj8L1aGi9QIvC9ShcJbtAmJmZmVmSt0AE16Nwfam0QFuPwvUoWJFAcD0K16O0cUA=\", \"dtype\": \"float64\", \"order\": \"little\", \"shape\": [46]}, \"product_category_name\": [\"bed_bath_table\", \"health_beauty\", \"sports_leisure\", \"home_decor\", \"computers_accessories\", \"housewares\", \"watches_gifts\", \"telephony\", \"garden_tools\", \"auto\", \"toys\", \"cool_stuff\", \"perfumery\", \"baby\", \"electronics\", \"stationery\", \"fashion_clothes_accessories\", \"construction\", \"pet_shop\", \"office_furniture\", \"food_drink\", \"consoles_games\", \"luggage_travel_accessories\", \"home_appliances\", \"home_furniture\", \"books\", \"small_appliances\", \"musical_instruments\", \"home_comfort\", \"audio\", \"market_place\", \"air_conditioning\", \"industry_commerce_and_business\", \"fashion_shoes\", \"fixed_telephony\", \"art\", \"agro_industry_and_commerce\", \"computers\", \"signaling_and_safety\", \"party_supplies\", \"tablets_printing_image\", \"cds_dvds\", \"cine_photo\", \"music\", \"flowers\", \"security_and_services\"], \"product_id_nunique\": [3018, 2848, 2639, 2430, 2321, 1882, 1630, 1396, 1322, 1127, 1037, 916, 915, 864, 842, 783, 748, 711, 513, 459, 364, 348, 315, 309, 303, 284, 264, 257, 171, 124, 116, 114, 103, 93, 90, 74, 73, 68, 58, 48, 30, 28, 27, 14, 9, 2]}}, {\"attr\": \"right\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1258\"}, \"new\": {\"field\": \"price_count\"}}, {\"attr\": \"right\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1260\"}, \"new\": {\"field\": \"price_count\"}}, {\"attr\": \"right\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1259\"}, \"new\": {\"field\": \"price_count\"}}, {\"attr\": \"right\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1261\"}, \"new\": {\"field\": \"price_count\"}}, {\"attr\": \"right\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1262\"}, \"new\": {\"field\": \"price_count\"}}], \"references\": []}","header":"{\"msgid\": \"1338\", \"msgtype\": \"PATCH-DOC\"}","metadata":"{}"},"Total Sales Value":{"content":"{\"events\": [{\"attr\": \"end\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1222\"}, \"new\": 1386146.768999965}, {\"attr\": \"reset_end\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1222\"}, \"new\": 1386146.768999965}, {\"attr\": \"factors\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1223\"}, \"new\": [\"security_and_services\", \"flowers\", \"cds_dvds\", \"music\", \"cine_photo\", \"tablets_printing_image\", \"party_supplies\", \"signaling_and_safety\", \"fashion_shoes\", \"art\", \"market_place\", \"industry_commerce_and_business\", \"audio\", \"air_conditioning\", \"fixed_telephony\", \"home_comfort\", \"food_drink\", \"books\", \"agro_industry_and_commerce\", \"home_furniture\", \"luggage_travel_accessories\", \"consoles_games\", \"electronics\", \"fashion_clothes_accessories\", \"musical_instruments\", \"home_appliances\", \"pet_shop\", \"computers\", \"stationery\", \"small_appliances\", \"office_furniture\", \"telephony\", \"construction\", \"perfumery\", \"baby\", \"toys\", \"garden_tools\", \"auto\", \"cool_stuff\", \"housewares\", \"home_decor\", \"computers_accessories\", \"sports_leisure\", \"bed_bath_table\", \"watches_gifts\", \"health_beauty\"]}, {\"attr\": \"axis_label\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1234\"}, \"new\": \"Total Gross Sales (BRL)\"}, {\"attr\": \"text\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1226\"}, \"new\": \"Highest Grossing Product Categories  Sort by: Total Sales Value\"}, {\"attr\": \"tooltips\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1224\"}, \"new\": [[\"Category\", \"@product_category_name\"], [\"Total Value of Sales\", \"@price_sum{$0,0.00}\"]]}, {\"attr\": \"factors\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1254\"}, \"new\": [\"health_beauty\", \"watches_gifts\", \"bed_bath_table\", \"sports_leisure\", \"computers_accessories\", \"home_decor\", \"housewares\", \"cool_stuff\", \"auto\", \"garden_tools\", \"toys\", \"baby\", \"perfumery\", \"construction\", \"telephony\", \"office_furniture\", \"small_appliances\", \"stationery\", \"computers\", \"pet_shop\", \"home_appliances\", \"musical_instruments\", \"fashion_clothes_accessories\", \"electronics\", \"consoles_games\", \"luggage_travel_accessories\", \"home_furniture\", \"agro_industry_and_commerce\", \"books\", \"food_drink\", \"home_comfort\", \"fixed_telephony\", \"air_conditioning\", \"audio\", \"industry_commerce_and_business\", \"market_place\", \"art\", \"fashion_shoes\", \"signaling_and_safety\", \"party_supplies\", \"tablets_printing_image\", \"cine_photo\", \"music\", \"cds_dvds\", \"flowers\", \"security_and_services\"]}, {\"cols\": null, \"column_source\": {\"id\": \"1255\"}, \"kind\": \"ColumnDataChanged\", \"new\": {\"color\": [\"health_beauty\", \"watches_gifts\", \"bed_bath_table\", \"sports_leisure\", \"computers_accessories\", \"home_decor\", \"housewares\", \"cool_stuff\", \"auto\", \"garden_tools\", \"toys\", \"baby\", \"perfumery\", \"construction\", \"telephony\", \"office_furniture\", \"small_appliances\", \"stationery\", \"computers\", \"pet_shop\", \"home_appliances\", \"musical_instruments\", \"fashion_clothes_accessories\", \"electronics\", \"consoles_games\", \"luggage_travel_accessories\", \"home_furniture\", \"agro_industry_and_commerce\", \"books\", \"food_drink\", \"home_comfort\", \"fixed_telephony\", \"air_conditioning\", \"audio\", \"industry_commerce_and_business\", \"market_place\", \"art\", \"fashion_shoes\", \"signaling_and_safety\", \"party_supplies\", \"tablets_printing_image\", \"cine_photo\", \"music\", \"cds_dvds\", \"flowers\", \"security_and_services\"], \"price_mean\": {\"__ndarray__\": \"QysCt1wpkUDA2Z1r/2F1QGCgOBHXqXNAQXWaBzyRcUCeoMsZYptrQEdn5dRqEWlAmnurNMU/Z0AC7O5TEjBnQHgWY9kXjGRASUdoGIs1ZEBYgTDSjtljQJUnOHqCu2JAqrrIuemKYkDARqYwGnhiQHA9CtejtGFA9sRO7MRqYUDYhtDMB2hhQF6KKfRGOmFAoP2pPrOcYEA3PrwxhEFgQN1430XsGGBAEyDwu1/mX0BrbYLdR2BdQDgnW704Gl1A0UXNGnALXUAHqXPKxnxcQKHVlwpa/1tAMIDf+EzDW0Dn5djzvZFbQO2eEJOKBVtAkrFO75bMV0Ciw1tAAFZXQCc67l144FZA8c0cRDPQVkBgw8BUmLZWQFDURf4JrVZAz5hjnqRkVkCMJTMDGelVQC6aIb5G2VNAS16vC8euUkCj2thOfMpRQDlksq9OZlFAKfNbG0UEUUCCTW1yUZ5MQOeFLJzAhkxAUMEZFZzRQEA=\", \"dtype\": \"float64\", \"order\": \"little\", \"shape\": [46]}, \"price_sum\": {\"__ndarray__\": \"WHoULn86M0HE9SjclkwyQfT2KJwaAzBBHfcoXEUOLkEQ9yhcq84rQQtyPQpmZiZBhM3MTPA9I0HWzMxMRv8iQf5wPQob8SFBg+xRuCduHUGCXI/CQ1UdQSt7FK4yChlBNYXrUV5FGEHUo3A9H1cVQelvPQpKrxNBLI/C9XHGEEE9j8L1ntcMQcW3HoWbCQxBnXA9Cpk3C0GO////qRYKQeP////TuQdB+4TrUXzrBkEAwvUocrgFQeG3HoVzMwNBbML1KDL6AkFrcD0KexoBQfP///9LAwFBU7gehSe18UAYrkfh8vDwQN6jcD3eVfBAQYXrUaAY7UBiZmZmBkHsQPZRuB5luOpADgAAANDD6EBYuB6FM2jjQGLhehQeoNtAmpmZmWlf2UD9UbgeZQHXQIrrUbhOAdVAcRSuR4HsyUBYj8L1aGi9QIvC9ShcJbtAmJmZmVmSt0AE16Nwfam0QFuPwvUoWJFAcD0K16O0cUA=\", \"dtype\": \"float64\", \"order\": \"little\", \"shape\": [46]}, \"product_category_name\": [\"health_beauty\", \"watches_gifts\", \"bed_bath_table\", \"sports_leisure\", \"computers_accessories\", \"home_decor\", \"housewares\", \"cool_stuff\", \"auto\", \"garden_tools\", \"toys\", \"baby\", \"perfumery\", \"construction\", \"telephony\", \"office_furniture\", \"small_appliances\", \"stationery\", \"computers\", \"pet_shop\", \"home_appliances\", \"musical_instruments\", \"fashion_clothes_accessories\", \"electronics\", \"consoles_games\", \"luggage_travel_accessories\", \"home_furniture\", \"agro_industry_and_commerce\", \"books\", \"food_drink\", \"home_comfort\", \"fixed_telephony\", \"air_conditioning\", \"audio\", \"industry_commerce_and_business\", \"market_place\", \"art\", \"fashion_shoes\", \"signaling_and_safety\", \"party_supplies\", \"tablets_printing_image\", \"cine_photo\", \"music\", \"cds_dvds\", \"flowers\", \"security_and_services\"], \"product_id_nunique\": [3018, 2848, 2639, 2430, 2321, 1882, 1630, 1396, 1322, 1127, 1037, 916, 915, 864, 842, 783, 748, 711, 513, 459, 364, 348, 315, 309, 303, 284, 264, 257, 171, 124, 116, 114, 103, 93, 90, 74, 73, 68, 58, 48, 30, 28, 27, 14, 9, 2]}}, {\"attr\": \"right\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1258\"}, \"new\": {\"field\": \"price_sum\"}}, {\"attr\": \"right\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1260\"}, \"new\": {\"field\": \"price_sum\"}}, {\"attr\": \"right\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1259\"}, \"new\": {\"field\": \"price_sum\"}}, {\"attr\": \"right\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1261\"}, \"new\": {\"field\": \"price_sum\"}}, {\"attr\": \"right\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1262\"}, \"new\": {\"field\": \"price_sum\"}}], \"references\": []}","header":"{\"msgid\": \"1333\", \"msgtype\": \"PATCH-DOC\"}","metadata":"{}"},"Unique products":{"content":"{\"events\": [{\"attr\": \"end\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1222\"}, \"new\": 3319.6}, {\"attr\": \"reset_end\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1222\"}, \"new\": 3319.6}, {\"attr\": \"factors\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1223\"}, \"new\": [\"security_and_services\", \"tablets_printing_image\", \"flowers\", \"music\", \"cine_photo\", \"computers\", \"cds_dvds\", \"audio\", \"industry_commerce_and_business\", \"art\", \"agro_industry_and_commerce\", \"party_supplies\", \"signaling_and_safety\", \"market_place\", \"fixed_telephony\", \"home_comfort\", \"air_conditioning\", \"fashion_shoes\", \"small_appliances\", \"food_drink\", \"musical_instruments\", \"home_furniture\", \"office_furniture\", \"consoles_games\", \"luggage_travel_accessories\", \"books\", \"home_appliances\", \"electronics\", \"pet_shop\", \"garden_tools\", \"cool_stuff\", \"stationery\", \"perfumery\", \"baby\", \"construction\", \"fashion_clothes_accessories\", \"telephony\", \"watches_gifts\", \"toys\", \"computers_accessories\", \"auto\", \"housewares\", \"health_beauty\", \"home_decor\", \"sports_leisure\", \"bed_bath_table\"]}, {\"attr\": \"axis_label\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1234\"}, \"new\": \"Number of Products\"}, {\"attr\": \"text\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1226\"}, \"new\": \"Product Categories by Product Count  Sort by: Unique products\"}, {\"attr\": \"factors\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1254\"}, \"new\": [\"bed_bath_table\", \"sports_leisure\", \"home_decor\", \"health_beauty\", \"housewares\", \"auto\", \"computers_accessories\", \"toys\", \"watches_gifts\", \"telephony\", \"fashion_clothes_accessories\", \"construction\", \"baby\", \"perfumery\", \"stationery\", \"cool_stuff\", \"garden_tools\", \"pet_shop\", \"electronics\", \"home_appliances\", \"books\", \"luggage_travel_accessories\", \"consoles_games\", \"office_furniture\", \"home_furniture\", \"musical_instruments\", \"food_drink\", \"small_appliances\", \"fashion_shoes\", \"air_conditioning\", \"home_comfort\", \"fixed_telephony\", \"market_place\", \"signaling_and_safety\", \"party_supplies\", \"agro_industry_and_commerce\", \"art\", \"industry_commerce_and_business\", \"audio\", \"cds_dvds\", \"computers\", \"cine_photo\", \"music\", \"flowers\", \"tablets_printing_image\", \"security_and_services\"]}, {\"cols\": null, \"column_source\": {\"id\": \"1255\"}, \"kind\": \"ColumnDataChanged\", \"new\": {\"color\": [\"bed_bath_table\", \"sports_leisure\", \"home_decor\", \"health_beauty\", \"housewares\", \"auto\", \"computers_accessories\", \"toys\", \"watches_gifts\", \"telephony\", \"fashion_clothes_accessories\", \"construction\", \"baby\", \"perfumery\", \"stationery\", \"cool_stuff\", \"garden_tools\", \"pet_shop\", \"electronics\", \"home_appliances\", \"books\", \"luggage_travel_accessories\", \"consoles_games\", \"office_furniture\", \"home_furniture\", \"musical_instruments\", \"food_drink\", \"small_appliances\", \"fashion_shoes\", \"air_conditioning\", \"home_comfort\", \"fixed_telephony\", \"market_place\", \"signaling_and_safety\", \"party_supplies\", \"agro_industry_and_commerce\", \"art\", \"industry_commerce_and_business\", \"audio\", \"cds_dvds\", \"computers\", \"cine_photo\", \"music\", \"flowers\", \"tablets_printing_image\", \"security_and_services\"], \"price_mean\": {\"__ndarray__\": \"QysCt1wpkUDA2Z1r/2F1QGCgOBHXqXNAQXWaBzyRcUCeoMsZYptrQEdn5dRqEWlAmnurNMU/Z0AC7O5TEjBnQHgWY9kXjGRASUdoGIs1ZEBYgTDSjtljQJUnOHqCu2JAqrrIuemKYkDARqYwGnhiQHA9CtejtGFA9sRO7MRqYUDYhtDMB2hhQF6KKfRGOmFAoP2pPrOcYEA3PrwxhEFgQN1430XsGGBAEyDwu1/mX0BrbYLdR2BdQDgnW704Gl1A0UXNGnALXUAHqXPKxnxcQKHVlwpa/1tAMIDf+EzDW0Dn5djzvZFbQO2eEJOKBVtAkrFO75bMV0Ciw1tAAFZXQCc67l144FZA8c0cRDPQVkBgw8BUmLZWQFDURf4JrVZAz5hjnqRkVkCMJTMDGelVQC6aIb5G2VNAS16vC8euUkCj2thOfMpRQDlksq9OZlFAKfNbG0UEUUCCTW1yUZ5MQOeFLJzAhkxAUMEZFZzRQEA=\", \"dtype\": \"float64\", \"order\": \"little\", \"shape\": [46]}, \"product_category_name\": [\"bed_bath_table\", \"sports_leisure\", \"home_decor\", \"health_beauty\", \"housewares\", \"auto\", \"computers_accessories\", \"toys\", \"watches_gifts\", \"telephony\", \"fashion_clothes_accessories\", \"construction\", \"baby\", \"perfumery\", \"stationery\", \"cool_stuff\", \"garden_tools\", \"pet_shop\", \"electronics\", \"home_appliances\", \"books\", \"luggage_travel_accessories\", \"consoles_games\", \"office_furniture\", \"home_furniture\", \"musical_instruments\", \"food_drink\", \"small_appliances\", \"fashion_shoes\", \"air_conditioning\", \"home_comfort\", \"fixed_telephony\", \"market_place\", \"signaling_and_safety\", \"party_supplies\", \"agro_industry_and_commerce\", \"art\", \"industry_commerce_and_business\", \"audio\", \"cds_dvds\", \"computers\", \"cine_photo\", \"music\", \"flowers\", \"tablets_printing_image\", \"security_and_services\"], \"product_id_nunique\": [3018, 2848, 2639, 2430, 2321, 1882, 1630, 1396, 1322, 1127, 1037, 916, 915, 864, 842, 783, 748, 711, 513, 459, 364, 348, 315, 309, 303, 284, 264, 257, 171, 124, 116, 114, 103, 93, 90, 74, 73, 68, 58, 48, 30, 28, 27, 14, 9, 2]}}, {\"attr\": \"right\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1258\"}, \"new\": {\"field\": \"product_id_nunique\"}}, {\"attr\": \"right\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1260\"}, \"new\": {\"field\": \"product_id_nunique\"}}, {\"attr\": \"right\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1259\"}, \"new\": {\"field\": \"product_id_nunique\"}}, {\"attr\": \"right\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1261\"}, \"new\": {\"field\": \"product_id_nunique\"}}, {\"attr\": \"right\", \"kind\": \"ModelChanged\", \"model\": {\"id\": \"1262\"}, \"new\": {\"field\": \"product_id_nunique\"}}], \"references\": []}","header":"{\"msgid\": \"1328\", \"msgtype\": \"PATCH-DOC\"}","metadata":"{}"}},"values":["Mean Price"],"widgets":{"1296":0}},"id":"1306","type":"panel.models.state.State"},{"attributes":{},"id":"1232","type":"CategoricalScale"},{"attributes":{},"id":"1245","type":"ResetTool"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"field":"color","transform":{"id":"1254"}},"height":{"value":0.8},"line_alpha":{"value":0.1},"right":{"field":"price_mean"},"y":{"field":"product_category_name"}},"id":"1259","type":"HBar"},{"attributes":{"overlay":{"id":"1246"}},"id":"1244","type":"BoxZoomTool"},{"attributes":{},"id":"1256","type":"Selection"},{"attributes":{"fill_color":{"field":"color","transform":{"id":"1254"}},"height":{"value":0.8},"right":{"field":"price_mean"},"y":{"field":"product_category_name"}},"id":"1260","type":"HBar"},{"attributes":{"code":"\nvar state = null\nfor (var root of cb_obj.document.roots()) {\n  if (root.id == '1306') {\n    state = root;\n    break;\n  }\n}\nif (!state) { return; }\nstate.set_state(cb_obj, cb_obj.value)\n"},"id":"1307","type":"CustomJS"},{"attributes":{},"id":"1268","type":"CategoricalTickFormatter"},{"attributes":{"margin":[5,5,5,5],"name":"VSpacer03257","sizing_mode":"stretch_height"},"id":"1297","type":"Spacer"},{"attributes":{"factors":["flowers","electronics","food_drink","party_supplies","cds_dvds","telephony","fashion_clothes_accessories","books","home_decor","fashion_shoes","tablets_printing_image","housewares","market_place","stationery","bed_bath_table","cine_photo","signaling_and_safety","pet_shop","garden_tools","art","sports_leisure","computers_accessories","perfumery","toys","home_comfort","luggage_travel_accessories","health_beauty","baby","consoles_games","auto","audio","security_and_services","industry_commerce_and_business","construction","home_furniture","music","office_furniture","cool_stuff","air_conditioning","home_appliances","watches_gifts","fixed_telephony","musical_instruments","small_appliances","agro_industry_and_commerce","computers"],"tags":[[["product_category_name","product_category_name",null]]]},"id":"1223","type":"FactorRange"},{"attributes":{"align":null,"below":[{"id":"1234"}],"center":[{"id":"1237"},{"id":"1240"}],"left":[{"id":"1238"}],"margin":null,"min_border_bottom":10,"min_border_left":10,"min_border_right":10,"min_border_top":10,"renderers":[{"id":"1263"}],"sizing_mode":"fixed","title":{"id":"1226"},"toolbar":{"id":"1247"},"x_range":{"id":"1222"},"x_scale":{"id":"1230"},"y_range":{"id":"1223"},"y_scale":{"id":"1232"}},"id":"1225","subtype":"Figure","type":"Plot"},{"attributes":{"children":[{"id":"1295"},{"id":"1297"}],"margin":[0,0,0,0],"name":"Column03258"},"id":"1294","type":"Column"},{"attributes":{"fill_color":{"field":"color","transform":{"id":"1254"}},"height":{"value":0.8},"right":{"field":"price_mean"},"y":{"field":"product_category_name"}},"id":"1261","type":"HBar"},{"attributes":{"axis_label":"Product Categories","bounds":"auto","formatter":{"id":"1268"},"major_label_orientation":"horizontal","ticker":{"id":"1239"}},"id":"1238","type":"CategoricalAxis"},{"attributes":{},"id":"1239","type":"CategoricalTicker"},{"attributes":{},"id":"1266","type":"BasicTickFormatter"},{"attributes":{"children":[{"id":"1221"},{"id":"1225"},{"id":"1293"},{"id":"1294"}],"margin":[0,0,0,0],"name":"Row03249","tags":["embedded"]},"id":"1220","type":"Row"},{"attributes":{"data_source":{"id":"1255"},"glyph":{"id":"1258"},"hover_glyph":{"id":"1261"},"muted_glyph":{"id":"1262"},"nonselection_glyph":{"id":"1259"},"selection_glyph":{"id":"1260"},"view":{"id":"1264"}},"id":"1263","type":"GlyphRenderer"},{"attributes":{"data":{"color":["computers","agro_industry_and_commerce","small_appliances","musical_instruments","fixed_telephony","watches_gifts","home_appliances","air_conditioning","cool_stuff","office_furniture","music","home_furniture","construction","industry_commerce_and_business","security_and_services","audio","auto","consoles_games","baby","health_beauty","luggage_travel_accessories","home_comfort","toys","perfumery","computers_accessories","sports_leisure","art","garden_tools","pet_shop","signaling_and_safety","cine_photo","bed_bath_table","stationery","market_place","housewares","tablets_printing_image","fashion_shoes","home_decor","books","fashion_clothes_accessories","telephony","cds_dvds","party_supplies","food_drink","electronics","flowers"],"price_count":[11242,9690,8643,8375,7843,6940,5980,4532,4342,4222,4090,3787,3416,3087,2757,2510,2381,2357,1938,1700,1169,1128,1088,1045,930,874,751,668,467,364,310,295,269,263,262,232,212,203,199,195,83,76,73,38,33,2],"price_mean":{"__ndarray__":"QysCt1wpkUDA2Z1r/2F1QGCgOBHXqXNAQXWaBzyRcUCeoMsZYptrQEdn5dRqEWlAmnurNMU/Z0AC7O5TEjBnQHgWY9kXjGRASUdoGIs1ZEBYgTDSjtljQJUnOHqCu2JAqrrIuemKYkDARqYwGnhiQHA9CtejtGFA9sRO7MRqYUDYhtDMB2hhQF6KKfRGOmFAoP2pPrOcYEA3PrwxhEFgQN1430XsGGBAEyDwu1/mX0BrbYLdR2BdQDgnW704Gl1A0UXNGnALXUAHqXPKxnxcQKHVlwpa/1tAMIDf+EzDW0Dn5djzvZFbQO2eEJOKBVtAkrFO75bMV0Ciw1tAAFZXQCc67l144FZA8c0cRDPQVkBgw8BUmLZWQFDURf4JrVZAz5hjnqRkVkCMJTMDGelVQC6aIb5G2VNAS16vC8euUkCj2thOfMpRQDlksq9OZlFAKfNbG0UEUUCCTW1yUZ5MQOeFLJzAhkxAUMEZFZzRQEA=","dtype":"float64","order":"little","shape":[46]},"price_sum":{"__ndarray__":"WHoULn86M0HE9SjclkwyQfT2KJwaAzBBHfcoXEUOLkEQ9yhcq84rQQtyPQpmZiZBhM3MTPA9I0HWzMxMRv8iQf5wPQob8SFBg+xRuCduHUGCXI/CQ1UdQSt7FK4yChlBNYXrUV5FGEHUo3A9H1cVQelvPQpKrxNBLI/C9XHGEEE9j8L1ntcMQcW3HoWbCQxBnXA9Cpk3C0GO////qRYKQeP////TuQdB+4TrUXzrBkEAwvUocrgFQeG3HoVzMwNBbML1KDL6AkFrcD0KexoBQfP///9LAwFBU7gehSe18UAYrkfh8vDwQN6jcD3eVfBAQYXrUaAY7UBiZmZmBkHsQPZRuB5luOpADgAAANDD6EBYuB6FM2jjQGLhehQeoNtAmpmZmWlf2UD9UbgeZQHXQIrrUbhOAdVAcRSuR4HsyUBYj8L1aGi9QIvC9ShcJbtAmJmZmVmSt0AE16Nwfam0QFuPwvUoWJFAcD0K16O0cUA=","dtype":"float64","order":"little","shape":[46]},"product_category_name":["computers","agro_industry_and_commerce","small_appliances","musical_instruments","fixed_telephony","watches_gifts","home_appliances","air_conditioning","cool_stuff","office_furniture","music","home_furniture","construction","industry_commerce_and_business","security_and_services","audio","auto","consoles_games","baby","health_beauty","luggage_travel_accessories","home_comfort","toys","perfumery","computers_accessories","sports_leisure","art","garden_tools","pet_shop","signaling_and_safety","cine_photo","bed_bath_table","stationery","market_place","housewares","tablets_printing_image","fashion_shoes","home_decor","books","fashion_clothes_accessories","telephony","cds_dvds","party_supplies","food_drink","electronics","flowers"],"product_id_nunique":[3018,2848,2639,2430,2321,1882,1630,1396,1322,1127,1037,916,915,864,842,783,748,711,513,459,364,348,315,309,303,284,264,257,171,124,116,114,103,93,90,74,73,68,58,48,30,28,27,14,9,2]},"selected":{"id":"1256"},"selection_policy":{"id":"1282"}},"id":"1255","type":"ColumnDataSource"},{"attributes":{"axis":{"id":"1238"},"dimension":1,"grid_line_color":null,"ticker":null},"id":"1240","type":"Grid"},{"attributes":{"js_property_callbacks":{"change:value":[{"id":"1307"}]},"margin":[20,20,20,20],"min_width":250,"options":["Mean Price","Total Sales Counts","Total Sales Value","Unique products"],"title":"Sort by","value":"Mean Price","width":250},"id":"1296","type":"Select"},{"attributes":{},"id":"1235","type":"BasicTicker"},{"attributes":{"axis":{"id":"1234"},"grid_line_color":null,"ticker":null},"id":"1237","type":"Grid"},{"attributes":{"fill_color":{"field":"color","transform":{"id":"1254"}},"height":{"value":0.8},"right":{"field":"price_mean"},"y":{"field":"product_category_name"}},"id":"1258","type":"HBar"},{"attributes":{"axis_label":"Mean Price","bounds":"auto","formatter":{"id":"1266"},"major_label_orientation":"horizontal","ticker":{"id":"1235"}},"id":"1234","type":"LinearAxis"},{"attributes":{"factors":["computers","agro_industry_and_commerce","small_appliances","musical_instruments","fixed_telephony","watches_gifts","home_appliances","air_conditioning","cool_stuff","office_furniture","music","home_furniture","construction","industry_commerce_and_business","security_and_services","audio","auto","consoles_games","baby","health_beauty","luggage_travel_accessories","home_comfort","toys","perfumery","computers_accessories","sports_leisure","art","garden_tools","pet_shop","signaling_and_safety","cine_photo","bed_bath_table","stationery","market_place","housewares","tablets_printing_image","fashion_shoes","home_decor","books","fashion_clothes_accessories","telephony","cds_dvds","party_supplies","food_drink","electronics","flowers"],"palette":["#8dd3c7","#ffffb3","#bebada","#fb8072","#80b1d3","#fdb462","#b3de69","#fccde5","#d9d9d9","#bc80bd","#ccebc5","#ffed6f","#8dd3c7","#ffffb3","#bebada","#fb8072","#80b1d3","#fdb462","#b3de69","#fccde5","#d9d9d9","#bc80bd","#ccebc5","#ffed6f","#8dd3c7","#ffffb3","#bebada","#fb8072","#80b1d3","#fdb462","#b3de69","#fccde5","#d9d9d9","#bc80bd","#ccebc5","#ffed6f","#8dd3c7","#ffffb3","#bebada","#fb8072","#80b1d3","#fdb462","#b3de69","#fccde5","#d9d9d9","#bc80bd"]},"id":"1254","type":"CategoricalColorMapper"},{"attributes":{"fill_alpha":{"value":0.2},"fill_color":{"field":"color","transform":{"id":"1254"}},"height":{"value":0.8},"line_alpha":{"value":0.2},"right":{"field":"price_mean"},"y":{"field":"product_category_name"}},"id":"1262","type":"HBar"},{"attributes":{"children":[{"id":"1296"}],"css_classes":["panel-widget-box"],"margin":[5,5,5,5],"name":"WidgetBox03250"},"id":"1295","type":"Column"}],"root_ids":["1220","1306"]},"title":"Bokeh Application","version":"2.2.1"}}
+        </script>
+        <script type="text/javascript">
+          (function() {
+            var fn = function() {
+              Bokeh.safely(function() {
+                (function(root) {
+                  function embed_document(root) {
+
+                  var docs_json = document.getElementById('1416').textContent;
+                  var render_items = [{"docid":"5fd789dd-c027-4b61-9256-e324375bea3c","root_ids":["1220","1306"],"roots":{"1220":"b3645ce7-9d75-4f55-ba91-5c2cebeddc42","1306":"d16e3eea-d251-4536-8ff8-b953e0bb6e55"}}];
+                  root.Bokeh.embed.embed_items(docs_json, render_items);
+
+                  }
+                  if (root.Bokeh !== undefined) {
+                    embed_document(root);
+                  } else {
+                    var attempts = 0;
+                    var timer = setInterval(function(root) {
+                      if (root.Bokeh !== undefined) {
+                        clearInterval(timer);
+                        embed_document(root);
+                      } else {
+                        attempts++;
+                        if (attempts > 100) {
+                          clearInterval(timer);
+                          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+                        }
+                      }
+                    }, 10, root)
+                  }
+                })(window);
+              });
+            };
+            if (document.readyState != "loading") fn();
+            else document.addEventListener("DOMContentLoaded", fn);
+          })();
+        </script>
+
+  </body>
+
+</html>

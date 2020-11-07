@@ -1,7 +1,7 @@
 # Site
 name: 'Hi, Alexis here'
 title: 'alexislimsh'
-description: 'Welcome to my personal page and record of explorations into data analysis.'
+description: 'This is where I record my explorations into data science.'
 logo: 'assets/images/logo.png'
 favicon: 'assets/images/logo.png'
 baseurl: ''
@@ -20,7 +20,6 @@ authors:
     gravatar: e56154546cf4be74e393c62d1ae9f9d4
     email: alexislimsh@gmail.com
     web: https://github.com/alexislimsh
-    twitter: https://twitter.com/wowthemesnet
     description: "Author of this blog"
 
 # Plugins
