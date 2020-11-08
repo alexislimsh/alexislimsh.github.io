@@ -57,7 +57,7 @@ The processing included removing orders that were cancelled or had ambiguous ord
 
 We also reduced the number of categories by combining similar category groups together.
 
-```
+```python
 # Define a dictionary to help with category renaming. 
 # Aggregation is done across categories such as construction tools and books.
 

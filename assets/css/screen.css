@@ -14,9 +14,7 @@ License: https://www.wowthemes.net/freebies-license/
 body {
     font-family: Lato;
 
-
 }
-
 a {
     color: #00ab6b;
     transition: all 0.2s;
@@ -33,7 +31,6 @@ pre {
     border: #E3EDF3 1px solid;
     width: 100%;
     padding: 7px;
-    font-family: Montserrat;
     font-size: .9rem;
     white-space: pre;
     overflow: auto;
@@ -155,6 +152,7 @@ section.recent-posts {
 
 .listfeaturedtag h4.card-text,
 .listrecent h4.card-text {
+    font-family: Lato;
     color: rgba(0, 0, 0, .44);
     font-size: 0.95rem;
     line-height: 1.6;
