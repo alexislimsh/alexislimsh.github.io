@@ -155,35 +155,35 @@ It definitely looks like the unethical posts are quite unethical, but not necess
 
 #### EDA
 
-![length](assets/images/lifeprotips/mean_words.png)
+![length]({{site.baseurl}}/assets/images/lifeprotips/mean_words.png)
 
 LPT posts tend to have more words than ULPT posts, especially when we look at the top posts which have more than 120 words on average for the title and post body combined.
 
-![upvote](assets/images/lifeprotips/mean_upvote.png)
+![upvote]({{site.baseurl}}/assets/images/lifeprotips/mean_upvote.png)
 
 When looking at the upvote ratios, they are comparable between the two subreddits, though we see that LPT new posts tend to have a lower upvote ratio as these posts are more frequent and may have a lower view rate overall.
 
-![score](assets/images/lifeprotips/mean_score.png)
+![score]({{site.baseurl}}/assets/images/lifeprotips/mean_score.png)
 
 In contrast, when we look at the actual scores for each post, the top LifeProTips posts have far higher means than the ULPT posts. This may be because the community is much larger (18.4m versus 1.1m). A larger community also gives the post more opportunity to reach a wider audience as posts with a lot of upvotes are recommended to people on the main Reddit page.
 
-![upvote](assets/images/lifeprotips/mean_pol.png)
+![upvote]({{site.baseurl}}/assets/images/lifeprotips/mean_pol.png)
 
 Polarity under TextBlob defines how positive or negative a text is, with -1 being very negative and +1 being very positive. Overall, the LPT posts are slightly more positive.
 
-![week](assets/images/lifeprotips/top_week.png)
+![week]({{site.baseurl}}/assets/images/lifeprotips/top_week.png)
 
 For both subreddits, it looks like the top posts tend to occur more on Thursday, while for LPT posts we also see a peak on Sunday. The posts on Thursday could be benefitimg from the weekend, where people are more likely to have free time and use Reddit, while the peak on Sunday for LPT posts could ostensibly be due to the week about to start and people looking to be productive.
 
-![hour](assets/images/lifeprotips/top_hour.png)
+![hour]({{site.baseurl}}/assets/images/lifeprotips/top_hour.png)
 
 The posts across hours (with time converted to US Eastern Standard Time) show that posts are most frequent late at night and early in the morning.
 
 #### WordClouds
 
-![lpt-cloud](assets/images/lifeprotips/wc-lpt.png)
+![lpt-cloud]({{site.baseurl}}/assets/images/lifeprotips/wc_lpt.png)
 
-![ulpt-cloud](assets/images/lifeprotips/wc-ulpt.png)
+![ulpt-cloud]({{site.baseurl}}/assets/images/lifeprotips/wc_ulpt.png)
 
 ### 4. Modeling & Prediction
 
@@ -194,7 +194,7 @@ We also leveraged on GridSearchCV to find the best combination of hyperparameter
 The top-performing model was the MultinomialNB algorithm that used the TF-IDF vectorizer. We further tuned this by looking at the top words in the misclassified posts. This led us to add in new stopwords such as 'home', 'engine', 'fuel', 'place', 'dry', 'people','try','work', 'like'.
 
 After further tuning, we turned to the features that overlapped the least for our two classes to look at what could be differentiating the classes:
-
+```
 ******************
 Features for ULPT
 ******************
@@ -226,7 +226,7 @@ perform
 wife
 vehicle
 thing people
-
+```
 *What seemed to differentiate the unethical posts?*
 
 Free trial and new account seem to refer to getting away with not paying for a service.
@@ -248,3 +248,5 @@ Based on our investigations and model, while we managed to create a model that s
 - **Defining unethical:** While there are some themes that stand out for both subreddits, we can't explicitly conclude what 'unethical' or anti-social behaviour is. However, this may come down to the fact that since these posts are written from a 1st person POV and focused on actions, we may not see language that defines negative behaviour. We may be better off examining a different subreddit e.g. AmITheAsshole.
 
 - **What are 'tips'?** We can definitely conclude that the tips submitted to both are quite similar and overlap in language and themes. Many of the tips submitted have to do with wanting to know things, purchases, work, and time.
+
+Read the full code on Github [here](https://github.com/alexislimsh/dsiprojects/tree/master/dsi-16-project-3)
