@@ -9,7 +9,7 @@ featured: false
 hidden: false
 ---
 
-Natural language processing project delving into the subreddit r/LifeProTips and r/UnethicalLifeProTips.
+Natural language processing project delving into the subreddits r/LifeProTips and r/UnethicalLifeProTips.
 
 Read the code on Github [here](https://github.com/alexislimsh/dsiprojects/tree/master/dsi-16-project-3)
 

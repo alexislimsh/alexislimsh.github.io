@@ -6,7 +6,7 @@ categories: [ga-dsi ]
 tags: [e-commerce, regression]
 image: assets/images/ecommerce-capstone/ecommerce-seller.jpg
 description: "Capstone Project for General Assembly's Data Science Immersive"
-featured: true
+featured: false
 hidden: false
 ---
 

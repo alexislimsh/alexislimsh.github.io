@@ -5,6 +5,7 @@ author: alexis
 categories: [ ga-dsi ]
 tags: [regression]
 image: assets/images/housing-boston-prediction/housing-hero.jpg
+featured: true
 ---
 
 Based on the Boston, Ames housing dataset, I predicted sale price by shortlisting top explanatory variables from over 80 categorical, ordinal, discrete and continuous variables using correlation.
