@@ -5,7 +5,7 @@ author: alexis
 categories: [ ga-dsi ]
 tags: [nlp, classification]
 image: assets/images/lifeprotips/lpt-hero.jpg
-featured: true
+featured: false
 hidden: false
 ---
 
