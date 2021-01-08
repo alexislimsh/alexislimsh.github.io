@@ -28,7 +28,7 @@ The mean sale prices, total sale orders, total sales value and number of unique 
 
 The product categories with the most number of sellers are the top categories in general. For those categories with less than 30 sellers, it may be difficult for us to get enough data to model appropriate values for them.
 
-{% include posts/sellers_categ.html %}
+{% include posts/sellers-categ.html %}
 
 ## Order Values Across Brazil
 
@@ -38,6 +38,7 @@ By joining our order and seller data with our location data, we were also able t
 
 ### Aggregated by Zip Codes
 {% include posts/zip-value.html %}
+
 
 This trend was also reflected in the number of sellers and seller performance in these areas.
 
